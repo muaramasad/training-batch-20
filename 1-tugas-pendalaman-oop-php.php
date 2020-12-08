@@ -1,6 +1,7 @@
 <?php
 
-class Hewan {
+// Pakai abstract class
+abstract class Hewan {
     use Fight;
     public $nama;
     public $darah = 50;
@@ -8,8 +9,11 @@ class Hewan {
     public $keahlian;
 
     public function atraksi() {
-        echo $this->nama .' sedang '.$this->keahlian.'<br/>';
+        $str = $this->nama .' sedang '.$this->keahlian.'<br/>';
+        return $str;
     }
+
+    abstract public function getInfoHewan();
 }
 
 trait Fight {
@@ -48,7 +52,6 @@ class Elang extends Hewan {
         echo 'Darah: '.$this->darah.'<br/>';
         echo 'Jumlah Kaki: '.$this->jumlahKaki.'<br/>';
         echo 'Keahlian: '.$this->keahlian.'<br/>';
-
     }
 }
 
@@ -83,8 +86,8 @@ $elang->getInfoHewan();
 echo "<br/>";
 $harimau->getInfoHewan();
 echo "<br/>";
-$elang->atraksi();
-$harimau->atraksi();
+echo $elang->atraksi();
+echo $harimau->atraksi();
 echo "<br/>";
 $elang->serang($harimau);
 echo "<br/>";
