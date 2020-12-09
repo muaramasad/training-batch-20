@@ -17,6 +17,7 @@ class CreateOtpCodesTable extends Migration
             $table->id();
             $table->string('code');
             $table->dateTime('expired');
+            $table->uuid('user_id');
             $table->timestamps();
         });
     }
