@@ -37,4 +37,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function isAdmin()
+    {
+        if(isset($this->role->role_name)){
+            if($this->role->role_name == 'admin'){
+                return true;
+            }
+        }
+        return false;
+    }
 }

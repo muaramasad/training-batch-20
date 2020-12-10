@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class IsEmailVerified
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class IsEmailVerified
      */
     public function handle($request, Closure $next)
     {
-        if(!is_null(Auth::user()->email_verified_at)){
+        if(Auth::user()->isAdmin()){
             return $next($request);
         }
         abort('403');

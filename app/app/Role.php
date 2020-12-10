@@ -9,4 +9,9 @@ class Role extends Model
 {
     use UsesUuid;
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->hasMany('App\user');
+    }
 }
