@@ -30,7 +30,7 @@ class VerificationController extends AuthController
                 ->header('Content-Type', 'text/json');
         }
 
-        if($otpCode->expired > $currentTiming){
+        if($currentTiming > $otpCode->expired){
             $response = [
                 "response_code" => $this->failCode,
                 "response_message" => $this->otpExpired
@@ -48,7 +48,7 @@ class VerificationController extends AuthController
 
         $response = [
             "response_code" => $this->successCode,
-            "response_message" => "silahkan cek email",
+            "response_message" => $this->verificationSuccess,
             "data" => $data
         ];
 
