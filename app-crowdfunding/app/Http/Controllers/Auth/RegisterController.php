@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\OtpCode;
 use App\User;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class RegisterController extends AuthController
 {
     /**
      * Handle the incoming request.
@@ -28,15 +27,17 @@ class RegisterController extends Controller
         ]);
 
         OtpCode::create([
-            'code' => generate_otp(4),
+            'code' => generate_otp(6),
             'expired' => date('Y-m-d H:i:s', strtotime('+5 minutes')),
             'user_id' => $user->id
         ]);
 
+        $data['user'] = $user;
+
         $response = [
-            "response_code" => "00",
+            "response_code" => $this->successCode,
             "response_message" => "silahkan cek email",
-            "data" => $user
+            "data" => $data
         ];
 
         return response($response, 200)
