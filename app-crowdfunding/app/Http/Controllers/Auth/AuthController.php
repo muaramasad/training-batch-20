@@ -14,4 +14,6 @@ class AuthController extends Controller
     protected $otpNotFound = "kode OTP tidak ditemukan";
     protected $otpExpired = "kode OTP sudah tidak berlaku, silahkan generate kembali kode OTP";
     protected $verificationSuccess = "verifikasi akun berhasil";
+    protected $userNotFound = "akun tidak ditemukan";
+    protected $alreadyVerified = "akun sudah terverifikasi";
 }
