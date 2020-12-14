@@ -41,4 +41,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\OtpCode');
     }
+
+    public function hasVerified()
+    {
+        if(empty($this->email_verified_at)){
+            return false;
+        }
+        return true;
+    }
 }
