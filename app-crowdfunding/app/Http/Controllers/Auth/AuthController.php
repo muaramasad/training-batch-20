@@ -16,4 +16,6 @@ class AuthController extends Controller
     protected $verificationSuccess = "verifikasi akun berhasil";
     protected $userNotFound = "akun tidak ditemukan";
     protected $alreadyVerified = "akun sudah terverifikasi";
+    protected $notVerified = "akun belum terverifikasi";
+    protected $passwordUpdated = "password berhasil diupdate";
 }
