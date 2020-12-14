@@ -8,4 +8,9 @@ class OtpCode extends Model
 {
     protected $table = "otp_code";
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
