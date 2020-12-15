@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisteredEvent;
+use App\Mail\UserRegisteredMail;
 use App\OtpCode;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends AuthController
 {
@@ -31,6 +34,8 @@ class RegisterController extends AuthController
             'expired' => date('Y-m-d H:i:s', strtotime('+5 minutes')),
             'user_id' => $user->id
         ]);
+
+        event(new UserRegisteredEvent($user));
 
         $data['user'] = $user;
 
