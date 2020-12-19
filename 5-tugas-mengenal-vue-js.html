@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas 5 - Mengenal Vuejs</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(comment,index) in comments">
+            <button>+</button>
+            <p>{{comment.text}} | {{comment.created_at}} | Score: {{comment.score}}</p>
+            <button>-</button>
+        </div>
+        <textarea v-model="comment" @keyup.enter="newComment"></textarea>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                comment: "",
+                currentDate: "",
+                comments: [
+                    {
+                        "text": "Komentar 1",
+                        "created_at": "2020-12-20",
+                        "score": 0,
+                        "vote": "none"
+                    },
+                    {
+                        "text": "Komentar 2",
+                        "created_at": "2020-12-20",
+                        "score": 5,
+                        "vote": "none"
+                    },
+                ]
+            },
+            methods: {
+                newComment: function(){
+                    this.comments.push({
+                        "text": this.comment,
+                        "created_at": "2020-12-20",
+                        "score": 0,
+                        "vote": "none"
+                    });
+                    this.reset();
+                },
+                reset: function(){
+                    this.comment = ""
+                }
+            }
+        })
+    </script>
+</body>
+</html>
