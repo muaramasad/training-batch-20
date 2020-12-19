@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Quiz 2 - Quiz Vue JS </title>
+    </head>
+    <body>
+        <div id="app">
+            <div id="input-data">
+                <input type="text" name="name" v-model="inputName"/>
+                <button @click="create">Add</button>
+            </div>
+            <ol>
+                <li v-for="user in users">
+                    {{ user.name }}
+                    <button>Edit</button>
+                    <button>Delete</button>
+                </li>
+            </ol>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    inputName: "",
+                    users: [
+                        {
+                            "name": "Muhammad Iqbal Mubarok"
+                        },
+                        {
+                            "name": "Ruby Purwanti"
+                        },
+                        {
+                            "name": "Faqih Muhammad"
+                        }
+                    ]
+                },
+                methods: {
+                    create: function() {
+                        this.users.push({"name":this.inputName});
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
