@@ -6,12 +6,13 @@
         <div id="app">
             <div id="input-data">
                 <input type="text" name="name" v-model="inputName"/>
-                <button @click="create">Add</button>
+                <button v-if="operation === 'add'" @click="create">{{operation}}</button>
+                <button v-else @click="update(inputId)">{{operation}}</button>
             </div>
             <ol>
                 <li v-for="(user,index) in users">
                     {{ user.name }}
-                    <button>Edit</button>
+                    <button @click="getData(index)">Edit</button>
                     <button @click="deleteData(index)">Delete</button>
                 </li>
             </ol>
@@ -21,7 +22,9 @@
             var app = new Vue({
                 el: '#app',
                 data: {
+                    inputId: "",
                     inputName: "",
+                    operation: "add",
                     users: [
                         {
                             "name": "Muhammad Iqbal Mubarok"
@@ -40,6 +43,15 @@
                     },
                     deleteData: function(id) {
                         this.users.splice(id,1);
+                    },
+                    getData: function(id) {
+                        this.inputName = this.users[id].name;
+                        this.operation = "update";
+                        this.inputId = id;
+                    },
+                    update: function(id) {
+                        this.users[id].name = this.inputName;
+                        this.operation = "add"
                     }
                 }
             })
