@@ -9,10 +9,10 @@
                 <button @click="create">Add</button>
             </div>
             <ol>
-                <li v-for="user in users">
+                <li v-for="(user,index) in users">
                     {{ user.name }}
                     <button>Edit</button>
-                    <button>Delete</button>
+                    <button @click="deleteData(index)">Delete</button>
                 </li>
             </ol>
         </div>
@@ -37,6 +37,9 @@
                 methods: {
                     create: function() {
                         this.users.push({"name":this.inputName});
+                    },
+                    deleteData: function(id) {
+                        this.users.splice(id,1);
                     }
                 }
             })
