@@ -42,7 +42,9 @@
                         this.users.push({"name":this.inputName});
                     },
                     deleteData: function(id) {
-                        this.users.splice(id,1);
+                        if(confirm("anda yakin?")){
+                            this.users.splice(id,1);
+                        }
                     },
                     getData: function(id) {
                         this.inputName = this.users[id].name;
