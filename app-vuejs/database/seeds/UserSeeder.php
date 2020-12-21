@@ -17,8 +17,6 @@ class UserSeeder extends Seeder
         foreach ($names as $key => $value) {
             DB::table('users')->insert([
                 'name' => $value,
-                'email' => $value.'@local.com',
-                'password' => Hash::make('secret'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
