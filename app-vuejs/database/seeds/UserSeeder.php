@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Role;
+use Illuminate\Support\Facades\Hash;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $names = ["jhon","adam"];
+        foreach ($names as $key => $value) {
+            DB::table('users')->insert([
+                'name' => $value,
+                'email' => $value.'@local.com',
+                'password' => Hash::make('secret'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+    }
+}
