@@ -29,13 +29,14 @@
         <ol>
             <li v-for="(user,index) in users">
                 @{{ user.name }}
-                <button @click="getData(index)">Edit</button>
-                <button @click="deleteData(index)">Delete</button>
+                <button @click="getData(user.id)">Edit</button>
+                <button @click="deleteData(user.id)">Delete</button>
             </li>
         </ol>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 <script>
     var app = new Vue({
         el: '#app',
@@ -43,37 +44,58 @@
             inputId: "",
             inputName: "",
             operation: "add",
-            users: [
-                {
-                    "name": "Muhammad Iqbal Mubarok"
-                },
-                {
-                    "name": "Ruby Purwanti"
-                },
-                {
-                    "name": "Faqih Muhammad"
-                }
-            ]
+            users: []
         },
         methods: {
+            getAllData: function() {
+                this.$http.get('/api/users').then(response => {
+                    this.users = response.body.data;
+                }, response => {
+                    // error callback
+                });
+            },
             create: function() {
-                this.users.push({"name":this.inputName});
-                this.inputName = "";
+                this.$http.post('/api/users', {"name":this.inputName}).then(response => {
+                    this.getAllData();
+                    this.inputName = "";
+                }, response => {
+                    // error callback
+                });
             },
             deleteData: function(id) {
                 if(confirm("anda yakin?")){
-                    this.users.splice(id,1);
+                    this.$http.delete('/api/users/'+id).then(response => {
+                        this.getAllData();
+                    }, response => {
+                        // error callback
+                    });
                 }
             },
             getData: function(id) {
-                this.inputName = this.users[id].name;
-                this.operation = "update";
-                this.inputId = id;
+                this.$http.get('/api/users/'+id).then(response => {
+                    this.inputName = response.body.data.name;
+                    this.operation = "update";
+                    this.inputId = id;
+                }, response => {
+                    // error callback
+                });
             },
             update: function(id) {
-                this.users[id].name = this.inputName;
-                this.operation = "add"
+                this.$http.put('/api/users/'+id, {"name":this.inputName}).then(response => {
+                    this.getAllData();
+                    this.operation = "add";
+                    this.inputName = "";
+                }, response => {
+                    // error callback
+                });
             }
+        },
+        mounted: function(){
+            this.$http.get('/api/users').then(response => {
+                this.users = response.body.data;
+            }, response => {
+                // error callback
+            });
         }
     })
 </script>
