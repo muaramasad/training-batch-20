@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $names = ["jhon","adam"];
+        $names = ["Muhammad Iqbal Mubarok","Ruby Purwanti","Faqih Muhammad"];
         foreach ($names as $key => $value) {
             DB::table('users')->insert([
                 'name' => $value,
