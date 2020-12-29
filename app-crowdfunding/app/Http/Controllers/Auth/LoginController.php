@@ -28,7 +28,7 @@ class LoginController extends AuthController
 
             $response = [
                 "response_code" => $this->successCode,
-                "response_message" => "silahkan cek email",
+                "response_message" => "login berhasil",
                 "data" => $data
             ];
             return response($response, 200)
