@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\UsesUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +10,7 @@ use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, UsesUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -49,5 +50,20 @@ class User extends Authenticatable
             return false;
         }
         return true;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function isAdmin()
+    {
+        if(isset($this->role->role_name)){
+            if($this->role->role_name == 'admin'){
+                return true;
+            }
+        }
+        return false;
     }
 }
