@@ -19,9 +19,9 @@ const router = new Router({
            component: () => import('./views/Donations.vue')
        },
        {
-           path: '/blogs',
+           path: '/blog',
            name: 'blogs',
-           component: () => import('./views/Blogs.vue')
+           component: () => import('./views/Blog.vue')
        },
        {
            path: '*',

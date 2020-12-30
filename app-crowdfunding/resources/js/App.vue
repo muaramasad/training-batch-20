@@ -1,25 +1,40 @@
 <template>
-    <div class="wrapper">
-        <router-link to="/">Home</router-link>
-        <router-link to="/donations">Donations</router-link>
-        <router-link to="/blogs">Blogs</router-link>
-        <div class="content-wrapper">
-            <router-view></router-view>
-        </div>
-        Donations {{this.$store.state.count}}
-        <button @click="increment()">Donation</button>
-    </div>
+    <v-app>
+        <v-navigation-drawer app>
+            <!-- -->
+        </v-navigation-drawer>
+
+        <v-app-bar app>
+            <!-- -->
+        </v-app-bar>
+
+        <!-- Sizes your content based upon application components -->
+        <v-main>
+
+            <!-- Provides the application the proper gutter -->
+            <v-container fluid>
+
+                <!-- If using vue-router -->
+                <router-view></router-view>
+            </v-container>
+        </v-main>
+
+        <v-footer app>
+            Sanbercode 2020
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
     export default {
         data: function(){
             return {
-                store: 0
+                donationCounter: 0
             }
         },
         methods: {
             increment() {
+                donationCounter = this.$store.state.count
                 this.$store.commit('increment')
                 console.log(this.$store.state.count)
             }
