@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Events\UserRegisteredEvent;
 use App\Mail\UserRegisteredMail;
 use App\OtpCode;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -24,9 +25,16 @@ class RegisterController extends AuthController
             'name' => ['required']
         ]);
 
+        if(User::isFirstRecord()){
+            $roleId = Role::getIdByRoleName('admin');
+        } else {
+            $roleId = Role::getIdByRoleName('user');
+        }
+
         $user = User::create([
             'email' => $request->email,
-            'name' => $request->name
+            'name' => $request->name,
+            'role_id' => $roleId
         ]);
 
         OtpCode::create([
