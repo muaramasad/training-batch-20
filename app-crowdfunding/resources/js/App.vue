@@ -7,6 +7,8 @@
             <router-view></router-view>
         </div>
         <app-footer />
+        Donations {{store.state.count}}
+        <button @click="increment()">Donation</button>
     </div>
 </template>
 
