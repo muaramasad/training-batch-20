@@ -5,6 +5,7 @@ import App from './App.vue'
 
 const app = new Vue({
    el: '#app',
+    props: ['store'],
    router,
     store,
    components: {

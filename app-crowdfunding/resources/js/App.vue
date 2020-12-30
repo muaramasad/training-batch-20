@@ -6,14 +6,24 @@
         <div class="content-wrapper">
             <router-view></router-view>
         </div>
-        <app-footer />
-        Donations {{store.state.count}}
+        Donations {{this.$store.state.count}}
         <button @click="increment()">Donation</button>
     </div>
 </template>
 
 <script>
     export default {
+        data: function(){
+            return {
+                store: 0
+            }
+        },
+        methods: {
+            increment() {
+                this.$store.commit('increment')
+                console.log(this.$store.state.count)
+            }
+        },
         mounted() {
             console.log('component mounted');
         }

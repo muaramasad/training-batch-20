@@ -223,8 +223,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      store: 0
+    };
+  },
+  methods: {
+    increment: function increment() {
+      this.$store.commit('increment');
+      console.log(this.$store.state.count);
+    }
+  },
   mounted: function mounted() {
     console.log('component mounted');
   }
@@ -726,9 +736,7 @@ var render = function() {
       _c("router-link", { attrs: { to: "/blogs" } }, [_vm._v("Blogs")]),
       _vm._v(" "),
       _c("div", { staticClass: "content-wrapper" }, [_c("router-view")], 1),
-      _vm._v(" "),
-      _c("app-footer"),
-      _vm._v("\n    Donations " + _vm._s(_vm.store.state.count) + "\n    "),
+      _vm._v("\n    Donations " + _vm._s(this.$store.state.count) + "\n    "),
       _c(
         "button",
         {
@@ -17313,6 +17321,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
+  props: ['store'],
   router: _router_js__WEBPACK_IMPORTED_MODULE_1__["default"],
   store: _store_js__WEBPACK_IMPORTED_MODULE_2__["default"],
   components: {

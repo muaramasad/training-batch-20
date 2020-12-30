@@ -8,7 +8,7 @@
     </head>
     <body>
         <div id="app">
-            <app></app>
+            <app :store="0"></app>
         </div>
         <script src="{{ url('/js/app.js') }}"></script>
     </body>
