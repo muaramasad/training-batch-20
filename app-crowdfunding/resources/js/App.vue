@@ -21,6 +21,7 @@
                     <v-btn block color="success">
                         <v-icon left>mdi-account</v-icon>
                         Register
+                    </v-btn>
                 </div>
 
                 <v-divider></v-divider>
