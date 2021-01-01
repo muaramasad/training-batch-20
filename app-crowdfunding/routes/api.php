@@ -8,7 +8,14 @@ Route::prefix('auth')->group(function () {
     Route::post('login', 'Auth\LoginController')->name('login');
 });
 
-Route::middleware(['auth:api','IsEmailVerified'])->group(function () {
+Route::middleware(['api'])->group(function () {
+    Route::prefix('campaigns')->group(function () {
+        Route::get('random/{count}', 'CampaignController@random');
+        Route::post('store', 'CampaignController@store');
+    });
+});
+
+Route::middleware(['api','auth:api','IsEmailVerified'])->group(function () {
     Route::prefix('profiles')->group(function () {
         Route::get('get-profile', 'UserController@getProfile');
         Route::post('update', 'UserController@updateProfile');
