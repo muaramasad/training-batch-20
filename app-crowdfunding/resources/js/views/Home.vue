@@ -1,24 +1,47 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Home
-                    </div>
-                    <div class="card-body">
-                        Home
-                    </div>
-                </div>
+    <div>
+        <v-container class="ma-0 pa-0" grid-list-sm>
+            <div class="text-right">
+                <v-btn small text to="/campaigns" class="blue--text">
+                    All Campaigns <v-icon>mdi-chevron-right</v-icon>
+                </v-btn>
             </div>
-        </div>
+            <v-layout wrap>
+                <v-flex v-for="(campaign,index) in campaigns" :key="`categoy-`+campaign.id" xs6>
+                    <v-card :to="'/category/'+campaign.id">
+                        <v-img
+                            :src="campaign.image"
+                            class="white--text"
+                            max-height="200"
+                        >
+                            <v-card-title
+                                class="fill-height align-end headline"
+                                v-text="campaign.title"
+                            ></v-card-title>
+                        </v-img>
+                    </v-card>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('component mounted');
+        data: () => ({
+           campaigns: []
+        }),
+        created() {
+            axios.get('/api/campaigns/random/2')
+                .then((response) => {
+                    let { data } = response.data;
+                    this.campaigns = data.campaigns;
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    let { response } = error;
+                    console.log(response);
+                })
         }
     }
 </script>
