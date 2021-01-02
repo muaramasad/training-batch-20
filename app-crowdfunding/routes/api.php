@@ -13,6 +13,10 @@ Route::middleware(['api'])->group(function () {
         Route::get('random/{count}', 'CampaignController@random');
         Route::post('store', 'CampaignController@store');
     });
+    Route::prefix('blogs')->group(function () {
+        Route::get('random/{count}', 'BlogController@random');
+        Route::post('store', 'BlogController@store');
+    });
 });
 
 Route::middleware(['api','auth:api','IsEmailVerified'])->group(function () {
