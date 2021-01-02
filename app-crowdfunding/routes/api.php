@@ -10,6 +10,7 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware(['api'])->group(function () {
     Route::prefix('campaigns')->group(function () {
+        Route::get('/', 'CampaignController@index');
         Route::get('random/{count}', 'CampaignController@random');
         Route::post('store', 'CampaignController@store');
     });

@@ -7,6 +7,22 @@ use App\Campaign;
 
 class CampaignController extends Controller
 {
+    public function index()
+    {
+        $campaigns = Campaign::paginate(1);
+
+        $data['campaigns'] = $campaigns;
+
+        $response = [
+            "response_code" => "00",
+            "response_message" => "success",
+            "data" => $data
+        ];
+
+        return response($response, 200)
+            ->header('Content-Type', 'text/json');
+
+    }
     public function random($count)
     {
         $campaigns = Campaign::select('*')->inRandomOrder()->limit($count)->get();
