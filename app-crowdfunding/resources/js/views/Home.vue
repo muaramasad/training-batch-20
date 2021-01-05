@@ -8,18 +8,19 @@
             </div>
             <v-layout wrap>
                 <v-flex v-for="(campaign,index) in campaigns" :key="`campaigns-`+campaign.id" xs6>
-                    <v-card :to="'/campaigns/'+campaign.id">
-                        <v-img
-                            :src="campaign.image"
-                            class="white--text"
-                            max-height="200"
-                        >
-                            <v-card-title
-                                class="fill-height align-end headline"
-                                v-text="campaign.title"
-                            ></v-card-title>
-                        </v-img>
-                    </v-card>
+<!--                    <v-card :to="'/campaigns/'+campaign.id">-->
+<!--                        <v-img-->
+<!--                            :src="campaign.image"-->
+<!--                            class="white&#45;&#45;text"-->
+<!--                            max-height="200"-->
+<!--                        >-->
+<!--                            <v-card-title-->
+<!--                                class="fill-height align-end headline"-->
+<!--                                v-text="campaign.title"-->
+<!--                            ></v-card-title>-->
+<!--                        </v-img>-->
+<!--                    </v-card>-->
+                    <campaign-item :campaign="campaign" />
                 </v-flex>
             </v-layout>
         </v-container>
@@ -49,7 +50,9 @@
 </template>
 
 <script>
+    import CampaignItem from "../components/CampaignItem";
     export default {
+        components: {CampaignItem},
         data: () => ({
             campaigns: [],
             blogs: []
