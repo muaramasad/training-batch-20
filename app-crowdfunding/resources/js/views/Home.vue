@@ -1,14 +1,14 @@
 <template>
     <div>
-        <v-container class="ma-0 pa-0" grid-list-sm>
+        <v-container class="pa-0" grid-list-sm>
             <div class="text-right">
                 <v-btn small text to="/campaigns" class="blue--text">
                     All Campaigns <v-icon>mdi-chevron-right</v-icon>
                 </v-btn>
             </div>
             <v-layout wrap>
-                <v-flex v-for="(campaign,index) in campaigns" :key="`categoy-`+campaign.id" xs6>
-                    <v-card :to="'/category/'+campaign.id">
+                <v-flex v-for="(campaign,index) in campaigns" :key="`campaigns-`+campaign.id" xs6>
+                    <v-card :to="'/campaigns/'+campaign.id">
                         <v-img
                             :src="campaign.image"
                             class="white--text"
@@ -23,7 +23,7 @@
                 </v-flex>
             </v-layout>
         </v-container>
-        <v-container class="ma-0 pa-0" grid-list-sm>
+        <v-container class="pa-0" grid-list-sm>
             <div class="text-right">
                 <v-btn small text to="/blogs" class="blue--text">
                     All Blogs <v-icon>mdi-chevron-right</v-icon>

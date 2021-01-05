@@ -100064,25 +100064,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     name: 'home',
     alias: '/home',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Home.vue */ "./resources/js/views/Home.vue"));
     }
   }, {
     path: '/donations',
     name: 'donations',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./views/Donations.vue */ "./resources/js/views/Donations.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Donations.vue */ "./resources/js/views/Donations.vue"));
     }
   }, {
     path: '/blog',
     name: 'blogs',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Blog.vue */ "./resources/js/views/Blog.vue"));
+      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./views/Blog.vue */ "./resources/js/views/Blog.vue"));
     }
   }, {
     path: '/campaigns',
     name: 'campaigns',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
+      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Campaigns.vue */ "./resources/js/views/Campaigns.vue"));
+    }
+  }, {
+    path: '/campaigns/:id',
+    name: 'campaignsDetails',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/CampaignsDetails.vue */ "./resources/js/views/CampaignsDetails.vue"));
     }
   }, {
     path: '*',

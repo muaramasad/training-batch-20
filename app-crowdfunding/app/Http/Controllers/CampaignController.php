@@ -84,4 +84,21 @@ class CampaignController extends Controller
         return response($response, 200)
             ->header('Content-Type', 'text/json');
     }
+
+    public function details($id)
+    {
+        $campaign = Campaign::find($id);
+
+        $data['campaign'] = $campaign;
+
+        $response = [
+            "response_code" => "00",
+            "response_message" => "success",
+            "data" => $data
+        ];
+
+        return response($response, 200)
+            ->header('Content-Type', 'text/json');
+
+    }
 }

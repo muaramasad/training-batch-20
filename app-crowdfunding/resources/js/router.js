@@ -29,6 +29,11 @@ const router = new Router({
            component: () => import('./views/Campaigns.vue')
        },
        {
+           path: '/campaigns/:id',
+           name: 'campaignsDetails',
+           component: () => import('./views/CampaignsDetails.vue')
+       },
+       {
            path: '*',
            redirect: '/'
        }

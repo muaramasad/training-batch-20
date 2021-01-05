@@ -13,6 +13,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('/', 'CampaignController@index');
         Route::get('random/{count}', 'CampaignController@random');
         Route::post('store', 'CampaignController@store');
+        Route::get('/{id}','CampaignController@details');
     });
     Route::prefix('blogs')->group(function () {
         Route::get('random/{count}', 'BlogController@random');
