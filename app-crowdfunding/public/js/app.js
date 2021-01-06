@@ -2023,6 +2023,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2139,6 +2146,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   data: function data() {
@@ -2156,11 +2166,13 @@ __webpack_require__.r(__webpack_exports__);
       guest: false
     };
   },
-  computed: {
+  computed: _objectSpread({
     isHome: function isHome() {
       return this.$route.path === '/' || this.$route.path === '/home';
     }
-  }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    transactions: 'transaction/transactions'
+  }))
 });
 
 /***/ }),
@@ -38553,28 +38565,37 @@ var render = function() {
                 "v-btn",
                 { attrs: { icon: "" } },
                 [
-                  _c(
-                    "v-badge",
-                    {
-                      attrs: { color: "orange", overlap: "" },
-                      scopedSlots: _vm._u(
+                  _vm.transactions > 0
+                    ? _c(
+                        "v-badge",
+                        {
+                          attrs: { color: "orange", overlap: "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "badge",
+                                fn: function() {
+                                  return [
+                                    _c("span", [
+                                      _vm._v(_vm._s(_vm.transactions))
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            3421690297
+                          )
+                        },
                         [
-                          {
-                            key: "badge",
-                            fn: function() {
-                              return [_c("span", [_vm._v("3")])]
-                            },
-                            proxy: true
-                          }
+                          _vm._v(" "),
+                          _c("v-icon", [_vm._v("mdi-cash-multiple")])
                         ],
-                        null,
-                        false,
-                        3881307536
+                        1
                       )
-                    },
-                    [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
-                    1
-                  )
+                    : _c("v-icon", [_vm._v("mdi-cash-multiple")])
                 ],
                 1
               ),
@@ -38619,23 +38640,37 @@ var render = function() {
                 "v-btn",
                 { attrs: { icon: "" } },
                 [
-                  _c(
-                    "v-badge",
-                    {
-                      attrs: { color: "orange", overlap: "" },
-                      scopedSlots: _vm._u([
+                  _vm.transactions > 0
+                    ? _c(
+                        "v-badge",
                         {
-                          key: "badge",
-                          fn: function() {
-                            return [_c("span", [_vm._v("3")])]
-                          },
-                          proxy: true
-                        }
-                      ])
-                    },
-                    [_vm._v(" "), _c("v-icon", [_vm._v("mdi-cash-multiple")])],
-                    1
-                  )
+                          attrs: { color: "orange", overlap: "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "badge",
+                                fn: function() {
+                                  return [
+                                    _c("span", [
+                                      _vm._v(_vm._s(_vm.transactions))
+                                    ])
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            3421690297
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c("v-icon", [_vm._v("mdi-cash-multiple")])
+                        ],
+                        1
+                      )
+                    : _c("v-icon", [_vm._v("mdi-cash-multiple")])
                 ],
                 1
               )
@@ -100112,21 +100147,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
+/* harmony import */ var _stores_transaction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stores/transaction */ "./resources/js/stores/transaction.js");
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment: function increment(state) {
-      state.count++;
-    }
+  modules: {
+    transaction: _stores_transaction__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/stores/transaction.js":
+/*!********************************************!*\
+  !*** ./resources/js/stores/transaction.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    transactions: 0
+  },
+  mutations: {
+    insert: function insert(state, payload) {
+      state.transactions++;
+    }
+  },
+  actions: {},
+  getters: {
+    transactions: function transactions(state) {
+      return state.transactions;
+    }
+  }
+});
 
 /***/ }),
 
