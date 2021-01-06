@@ -70,7 +70,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.go();
   },
-  methods: _objectSpread({
+  methods: _objectSpread(_objectSpread(_objectSpread({
     go: function go() {
       var _this = this;
 
@@ -86,8 +86,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
-    donate: 'transaction/insert'
-  }))
+    addTransaction: 'transaction/insert'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+    setAlert: 'alert/set'
+  })), {}, {
+    donate: function donate() {
+      this.addTransaction();
+      this.setAlert({
+        status: true,
+        color: 'success',
+        text: 'transaction succesfully added'
+      });
+    }
+  })
 });
 
 /***/ }),

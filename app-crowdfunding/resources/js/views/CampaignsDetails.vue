@@ -43,7 +43,7 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex';
+    import { mapMutations, mapActions } from 'vuex';
     export default {
         data: () => ({
             campaign: {},
@@ -67,11 +67,19 @@
                     })
             },
             ...mapMutations({
-                donate: 'transaction/insert'
-            })
-            // donate() {
-            //     this.$store.commit('insert');
-            // }
+                addTransaction: 'transaction/insert'
+            }),
+            ...mapActions({
+                setAlert: 'alert/set'
+            }),
+            donate() {
+                this.addTransaction();
+                this.setAlert({
+                    status: true,
+                    color: 'success',
+                    text: 'transaction succesfully added'
+                })
+            }
         }
     }
 </script>

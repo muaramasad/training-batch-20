@@ -1,5 +1,6 @@
 <template>
     <v-app>
+        <alert></alert>
         <v-navigation-drawer app v-model="drawer">
             <v-list>
                 <v-list-item v-if="!guest">
@@ -118,15 +119,19 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import Alert from './components/Alert.vue';
     export default {
         name: 'App',
+        components: {
+          Alert : () => import('./components/Alert')
+        },
         data: () => ({
             drawer: false,
             menus: [
                 { title: 'Home', icon: 'mdi-home', route: '/'},
                 { title: 'Campaigns', icon: 'mdi-hand-heart', route: '/campaigns'}
             ],
-            guest: false
+            guest: false,
         }),
         computed: {
             isHome() {
