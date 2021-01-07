@@ -14,6 +14,7 @@ Route::middleware(['api'])->group(function () {
         Route::get('random/{count}', 'CampaignController@random');
         Route::post('store', 'CampaignController@store');
         Route::get('/{id}','CampaignController@details');
+        Route::get('/search/{keyword}','CampaignController@search');
     });
     Route::prefix('blogs')->group(function () {
         Route::get('random/{count}', 'BlogController@random');

@@ -1,6 +1,11 @@
 <template>
     <v-app>
-        <alert></alert>
+        <alert />
+
+        <v-dialog v-model="dialog" fullscreen hide-overlay transition="scale-transition">
+            <search @closed="closeDialog" />
+        </v-dialog>
+
         <v-navigation-drawer app v-model="drawer">
             <v-list>
                 <v-list-item v-if="!guest">
@@ -77,6 +82,7 @@
                 label="Search"
                 prepend-inner-icon="mdi-magnify"
                 solo-inverted
+                @click="dialog = true"
             ></v-text-field>
         </v-app-bar>
 
@@ -123,7 +129,8 @@
     export default {
         name: 'App',
         components: {
-          Alert : () => import('./components/Alert')
+            Alert : () => import('./components/Alert'),
+            Search : () => import('./components/Search')
         },
         data: () => ({
             drawer: false,
@@ -132,6 +139,7 @@
                 { title: 'Campaigns', icon: 'mdi-hand-heart', route: '/campaigns'}
             ],
             guest: false,
+            dialog: false
         }),
         computed: {
             isHome() {
@@ -143,6 +151,11 @@
             // transaction() {
             //     return this.$store.getters.transaction;
             // }
+        },
+        methods: {
+            closeDialog(value) {
+                this.dialog = value;
+            }
         }
     }
 </script>

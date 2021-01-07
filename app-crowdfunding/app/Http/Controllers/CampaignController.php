@@ -101,4 +101,20 @@ class CampaignController extends Controller
             ->header('Content-Type', 'text/json');
 
     }
+
+    public function search($keyword)
+    {
+        $campaigns = Campaign::select('*')->where('title','LIKE',"%".$keyword."%")->get();
+
+        $data['campaigns'] = $campaigns;
+
+        $response = [
+            "response_code" => "00",
+            "response_message" => "success",
+            "data" => $data
+        ];
+
+        return response($response, 200)
+            ->header('Content-Type', 'text/json');
+    }
 }
