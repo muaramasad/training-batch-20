@@ -2214,7 +2214,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setDialogStatus: 'dialog/setStatus',
     setDialogComponent: 'dialog/setComponent',
     setAuth: 'auth/set',
-    setAlert: 'alert/set'
+    setAlert: 'alert/set',
+    checkToken: 'auth/checkToken'
   })), {}, {
     logout: function logout() {
       var _this = this;
@@ -2243,7 +2244,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     }
-  })
+  }),
+  mounted: function mounted() {
+    if (this.user) {
+      this.checkToken(this.user);
+    }
+  }
 });
 
 /***/ }),
@@ -100897,6 +100903,20 @@ __webpack_require__.r(__webpack_exports__);
     set: function set(_ref, payload) {
       var commit = _ref.commit;
       commit('set', payload);
+    },
+    checkToken: function checkToken(_ref2, payload) {
+      var commit = _ref2.commit;
+      var config = {
+        headers: {
+          'Authorization': 'Bearer ' + payload.token
+        }
+      };
+      var url = '/api/auth/check-token';
+      axios.post(url, {}, config).then(function (response) {
+        commit('set', payload);
+      })["catch"](function (error) {
+        commit('set', {});
+      });
     }
   },
   getters: {

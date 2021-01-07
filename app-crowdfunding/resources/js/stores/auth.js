@@ -11,6 +11,21 @@ export default {
     actions: {
         set: ({commit}, payload) => {
             commit('set', payload);
+        },
+        checkToken: ({commit}, payload) => {
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + payload.token,
+                }
+            };
+            let url = '/api/auth/check-token';
+            axios.post(url,{},config)
+                .then((response) => {
+                    commit('set',payload);
+                })
+                .catch((error) => {
+                    commit('set',{});
+                })
         }
     },
     getters: {
