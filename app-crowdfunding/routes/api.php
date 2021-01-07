@@ -6,6 +6,7 @@ Route::prefix('auth')->group(function () {
     Route::post('generate-otp', 'Auth\RegenerateOtpCodeController');
     Route::post('update-password', 'Auth\UpdatePasswordController')->middleware(['IsEmailVerified']);
     Route::post('login', 'Auth\LoginController')->name('login');
+    Route::post('logout', 'Auth\LogoutController')->name('logout')->middleware(['auth:api']);
 });
 
 Route::middleware(['api'])->group(function () {
