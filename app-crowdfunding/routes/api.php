@@ -22,7 +22,7 @@ Route::middleware(['api'])->group(function () {
     });
 });
 
-Route::middleware(['api','auth:api','IsEmailVerified'])->group(function () {
+Route::middleware(['api','auth:api'])->group(function () {
     Route::prefix('profiles')->group(function () {
         Route::get('get-profile', 'UserController@getProfile');
         Route::post('update', 'UserController@updateProfile');

@@ -41,7 +41,7 @@
 
 <script>
     export default {
-        name: "Search",
+        name: "search",
         components: {
             CampaignItem: () => import('./CampaignItem')
         },
