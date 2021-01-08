@@ -36,7 +36,8 @@
         props: ['campaign'],
         computed: {
             progress() {
-                return (this.campaign.donation_collected / this.campaign.donation_required * 100);
+                let donation = this.campaign.donation_collected / this.campaign.donation_required * 100;
+                return donation.toFixed(2);
             }
         }
     }

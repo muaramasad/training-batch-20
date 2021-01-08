@@ -62,7 +62,7 @@
 
         <v-app-bar app color="success" dark v-if="isHome">
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title>SanbercodeApp</v-toolbar-title>
+            <v-toolbar-title>Crowdfunding App</v-toolbar-title>
 
             <v-spacer></v-spacer>
 
