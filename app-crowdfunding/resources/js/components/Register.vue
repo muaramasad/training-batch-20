@@ -16,15 +16,10 @@
                     append-icon="mdi-email"
                 ></v-text-field>
                 <v-text-field
-                    v-model="password"
-                    :rules="passwordRules"
-                    label="Password"
+                    v-model="name"
+                    label="Name"
                     required
-                    hint="at least 6 characters"
-                    counter
-                    :type="showPassword ? 'text' : 'password'"
-                    :append-icon="showPassword ? 'mdi-eye':'mdi-eye-off'"
-                    @click:append="showPassword = !showPassword"
+                    append-icon="mdi-email"
                 ></v-text-field>
 
                 <div class="text-xs-center">
@@ -33,15 +28,8 @@
                         :disabled="!valid"
                         @click="submit"
                     >
-                        Login
+                        Register
                         <v-icon right dark>mdi-lock-open</v-icon>
-                    </v-btn>
-                    <v-btn
-                        color="primary lighten=1"
-                        @click="authProvider('google')"
-                    >
-                        Login with Google
-                        <v-icon right dark>mdi-google</v-icon>
                     </v-btn>
                 </div>
             </v-form>
@@ -52,7 +40,7 @@
 <script>
     import { mapGetters, mapActions } from 'vuex';
     export default {
-        name: "login",
+        name: "register",
         data() {
             return {
                 valid: true,
@@ -62,11 +50,7 @@
                     v => /([a-zA-Z0-9_]{1,})(@)([a-zA-Z0-9_]{2,}).([a-zA-Z0-9_])+/.test(v) || 'Email must be valid'
                 ],
                 showPassword: false,
-                password: '',
-                passwordRules: [
-                    v => !!v || 'Password is required',
-                    v => (v && v.length >= 6) || 'Min 6 character'
-                ]
+                name: ''
             }
         },
         computed: {
@@ -84,27 +68,18 @@
                 if(this.$refs.form.validate()){
                     let formData = {
                         'email': this.email,
-                        'password': this.password
+                        'name': this.name
                     };
-                    let url = '/api/auth/login';
+                    let url = '/api/auth/register';
                     axios.post(url, formData)
                         .then((response) => {
                             let { data } = response.data;
-                            this.setAuth(data);
-                            if(this.user.user.id.length>0){
-                                this.setAlert({
-                                    status: true,
-                                    color: 'success',
-                                    text: 'login success'
-                                });
-                                this.close();
-                            } else {
-                                this.setAlert({
-                                    status: true,
-                                    color: 'error',
-                                    text: 'login failed'
-                                });
-                            }
+                            this.setAlert({
+                                status: true,
+                                color: 'success',
+                                text: 'register success, please check your email address for verification'
+                            });
+                            this.close();
                         })
                         .catch((error) => {
                             let response = error.response
@@ -118,22 +93,6 @@
             },
             close() {
                 this.$emit('closed', false);
-            },
-            authProvider(provider) {
-                this.setDialogStatus(false);
-                let url = '/api/auth/social/' + provider;
-                axios.get(url)
-                    .then((response) => {
-                        let {data} = response.data;
-                        window.location.href = data.url;
-                    })
-                    .catch((error) => {
-                        this.alert({
-                            status: true,
-                            text: 'login failed',
-                            color: 'error'
-                        })
-                    })
             }
         }
     }

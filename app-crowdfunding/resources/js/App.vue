@@ -26,7 +26,7 @@
                         <v-icon left>mdi-lock</v-icon>
                         Login
                     </v-btn>
-                    <v-btn block color="success">
+                    <v-btn block color="success" @click="setDialogComponent('register')">
                         <v-icon left>mdi-account</v-icon>
                         Register
                     </v-btn>
@@ -118,7 +118,7 @@
         <v-card>
             <v-footer absolute app>
                 <v-card-text class="text-center">
-                    &copy; {{ new Date().getFullYear() }} - <strong>SanbercodeApp</strong>
+                    &copy; {{ new Date().getFullYear() }} - <strong>Crowdfunding App</strong>
                 </v-card-text>
             </v-footer>
         </v-card>
@@ -133,7 +133,8 @@
         components: {
             Alert : () => import('./components/Alert'),
             Search : () => import('./components/Search'),
-            Login : () => import('./components/Login')
+            Login : () => import('./components/Login'),
+            Register : () => import('./components/Register')
         },
         data: () => ({
             drawer: false,

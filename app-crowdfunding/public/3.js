@@ -215,8 +215,8 @@ var render = function() {
                         block: "",
                         color: "primary",
                         disabled:
-                          _vm.campaign.donation_collected >=
-                          _vm.campaign.donation_required
+                          parseFloat(_vm.campaign.donation_collected) >=
+                          parseFloat(_vm.campaign.donation_required)
                       },
                       on: { click: _vm.donate }
                     },

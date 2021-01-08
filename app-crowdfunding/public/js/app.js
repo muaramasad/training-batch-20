@@ -2169,6 +2169,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     Login: function Login() {
       return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/Login */ "./resources/js/components/Login.vue"));
+    },
+    Register: function Register() {
+      return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./components/Register */ "./resources/js/components/Register.vue"));
     }
   },
   data: function data() {
@@ -38718,7 +38721,14 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-btn",
-                        { attrs: { block: "", color: "success" } },
+                        {
+                          attrs: { block: "", color: "success" },
+                          on: {
+                            click: function($event) {
+                              return _vm.setDialogComponent("register")
+                            }
+                          }
+                        },
                         [
                           _c("v-icon", { attrs: { left: "" } }, [
                             _vm._v("mdi-account")
@@ -38933,7 +38943,7 @@ var render = function() {
                     _vm._s(new Date().getFullYear()) +
                     " - "
                 ),
-                _c("strong", [_vm._v("SanbercodeApp")])
+                _c("strong", [_vm._v("Crowdfunding App")])
               ])
             ],
             1

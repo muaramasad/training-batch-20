@@ -33,7 +33,7 @@
                 <p>{{campaign.description}}</p>
             </v-card-text>
             <v-card-actions>
-                <v-btn block color="primary" @click="donate" :disabled="campaign.donation_collected >= campaign.donation_required">
+                <v-btn block color="primary" @click="donate" :disabled="parseFloat(campaign.donation_collected) >= parseFloat(campaign.donation_required)">
                     <v-icon> mdi-money</v-icon> &nbsp;
                     DONATE
                 </v-btn>

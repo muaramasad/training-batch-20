@@ -66,6 +66,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
@@ -241,7 +242,8 @@ var render = function() {
                   required: "",
                   hint: "at least 6 characters",
                   counter: "",
-                  "append-icon": "showPassword ? 'mdi-eye':'mdi-eye-off'"
+                  type: _vm.showPassword ? "text" : "password",
+                  "append-icon": _vm.showPassword ? "mdi-eye" : "mdi-eye-off"
                 },
                 on: {
                   "click:append": function($event) {
