@@ -100784,6 +100784,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/CampaignsDetails.vue */ "./resources/js/views/CampaignsDetails.vue"));
     }
   }, {
+    path: '/auth/social/:provider/callback',
+    name: 'social',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Social.vue */ "./resources/js/views/Social.vue"));
+    }
+  }, {
     path: '*',
     redirect: '/'
   }]

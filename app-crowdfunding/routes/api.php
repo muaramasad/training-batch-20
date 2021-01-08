@@ -8,6 +8,9 @@ Route::prefix('auth')->group(function () {
     Route::post('login', 'Auth\LoginController')->name('login');
     Route::post('logout', 'Auth\LogoutController')->name('logout')->middleware(['auth:api']);
     Route::post('check-token', 'Auth\CheckTokenController')->middleware(['auth:api']);
+
+    Route::get('/social/{provider}', 'Auth\SocialliteController@redirectToProvider');
+    Route::get('/social/{provider}/callback', 'Auth\SocialliteController@handleProvideCallback');
 });
 
 Route::middleware(['api'])->group(function () {

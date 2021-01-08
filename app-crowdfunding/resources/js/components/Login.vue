@@ -33,8 +33,15 @@
                         @click="submit"
                     >
                         Login
+                        <v-icon right dark>mdi-lock-open</v-icon>
                     </v-btn>
-                    <v-icon right dark>mdi-lock-open</v-icon>
+                    <v-btn
+                        color="primary lighten=1"
+                        @click="authProvider('google')"
+                    >
+                        Login with Google
+                        <v-icon right dark>mdi-google</v-icon>
+                    </v-btn>
                 </div>
             </v-form>
         </v-container>
@@ -70,6 +77,7 @@
             ...mapActions({
                 setAlert: 'alert/set',
                 setAuth: 'auth/set',
+                setDialogStatus: 'dialog/setStatus'
             }),
             submit(){
                 if(this.$refs.form.validate()){
@@ -109,6 +117,22 @@
             },
             close() {
                 this.$emit('closed', false);
+            },
+            authProvider(provider) {
+                this.setDialogStatus(false);
+                let url = '/api/auth/social/' + provider;
+                axios.get(url)
+                    .then((response) => {
+                        let {data} = response.data;
+                        window.location.href = data.url;
+                    })
+                    .catch((error) => {
+                        this.alert({
+                            status: true,
+                            text: 'login failed',
+                            color: 'error'
+                        })
+                    })
             }
         }
     }
